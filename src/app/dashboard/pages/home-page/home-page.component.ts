@@ -9,5 +9,5 @@ import { CommonModule } from '@angular/common';
   styleUrls: ['./home-page.component.scss']
 })
 export class HomePageComponent {
-
+  url = 'https://placehold.co/600x400/EEE/31343C';
 }
