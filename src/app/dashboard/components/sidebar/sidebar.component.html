@@ -1,15 +1,22 @@
 <nav class="flex flex-col flex-1 gap-2 h-full">
   <div class="bg-zinc-900 rounded-lg p-2">
     <ul>
-      <li><a routerLink="/dashboard/home" class="flex gap-4 text-zinc-400 hover:text-zinc-100 items-center py-3 px-5 font-medium transition duration-300"><app-svg-icon icon="home" />Home</a></li>
-      <li><a routerLink="/dashboard/playlist" class="flex gap-4 text-zinc-400 hover:text-zinc-100 items-center py-3 px-5 font-medium transition duration-300"><app-svg-icon icon="search" />Playlist</a></li>
+      <li><a routerLink="/dashboard/home" class="flex gap-4 text-zinc-400 hover:text-zinc-100 items-center py-3 px-5 font-medium transition duration-300"><app-svg-icon [icon]="Icons.Home"/>Home</a></li>
+      <li><a routerLink="/dashboard/playlist" class="flex gap-4 text-zinc-400 hover:text-zinc-100 items-center py-3 px-5 font-medium transition duration-300"><app-svg-icon [icon]="Icons.Search"/>Playlist</a></li>
     </ul>
   </div>
 
   <div class="bg-zinc-900 rounded-lg p-2 flex-1 h-full">
     <ul>
-      <li><a routerLink="/dashboard/home" class="flex gap-4 text-zinc-400 hover:text-zinc-100 items-center py-3 px-5 font-medium transition duration-300">Home</a></li>
-      <li><a routerLink="/dashboard/playlist" class="flex gap-4 text-zinc-400 hover:text-zinc-100 items-center py-3 px-5 font-medium transition duration-300">Playlist</a></li>
+      <li><a routerLink="/dashboard/home" class="flex gap-4 text-zinc-400 hover:text-zinc-100 items-center py-3 px-5 font-medium transition duration-300"><app-svg-icon [icon]="Icons.Library"/>Biblioteca</a></li>
+
+      @for (item of playlists; track item; let i = $index) {
+        <li>
+          <app-side-card [playlist]="item"/>
+        </li>
+      } @empty {
+        <li>No data</li>
+      }
     </ul>
   </div>
 </nav>
