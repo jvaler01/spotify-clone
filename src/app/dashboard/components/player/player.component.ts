@@ -1,5 +1,6 @@
-import { Component, ElementRef, OnInit, signal, ViewChild } from '@angular/core';
+import { Component, ElementRef, inject, OnInit, signal, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { SpotifyService } from '../../services/spotify.service';
 import { SvgIconComponent } from '../svg-icon/svg-icon.component';
 import { SliderComponent } from '../slider/slider.component';
 import { Icons } from '../../interfaces/index';
@@ -14,6 +15,7 @@ import { Icons } from '../../interfaces/index';
 export class PlayerComponent implements OnInit{
   @ViewChild('audio') audioPlayerRef: ElementRef<HTMLAudioElement> | undefined;
   @ViewChild('audioBar') audioBarRef: ElementRef<HTMLInputElement> | undefined;
+  private spotifyService = inject(SpotifyService);
   isPlaying: boolean = false;
   isVolumeSilenced: boolean = false;
   songTimer = signal('0:00');
@@ -64,5 +66,9 @@ export class PlayerComponent implements OnInit{
       this.songTimer.update( current => '0:00');
       this.isPlaying = false;
     });
+  }
+
+  get currentSong() {
+    return this.spotifyService.currentSong;
   }
 }

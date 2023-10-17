@@ -1,8 +1,9 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { Playlist } from '../../interfaces';
 import { CardPlayButtonComponent } from '../card-play-button/card-play-button.component';
+import { SpotifyService } from '../../services/spotify.service';
 
 @Component({
   selector: 'app-playlist-card',
@@ -13,4 +14,9 @@ import { CardPlayButtonComponent } from '../card-play-button/card-play-button.co
 })
 export class PlaylistCardComponent {
   @Input() playlist: Playlist = {} as Playlist;
+  private spotifyService = inject(SpotifyService);
+  
+  setSongById(id: string, byList: boolean = false) {
+    this.spotifyService.setSongById(+id, byList);
+  }
 }

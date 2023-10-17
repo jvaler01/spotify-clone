@@ -6,6 +6,7 @@
     transition-all duration-500 opacity-0
     group-hover:translate-y-0 group-hover:opacity-100
     z-10"
+    (click)="setSongById(playlist.id, true)"
   >
     <app-card-play-button [playlistId]="playlist.id" />
   </div>

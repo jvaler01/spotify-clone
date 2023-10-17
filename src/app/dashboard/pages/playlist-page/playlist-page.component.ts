@@ -23,4 +23,8 @@ export class PlaylistPageComponent {
   get playlist(): Playlist {
     return this.spotifyService.getPlaylistsById(this.id);
   }
+  
+  setSongById(id: string, byList: boolean = false) {
+    this.spotifyService.setSongById(+id, byList);
+  }
 }
