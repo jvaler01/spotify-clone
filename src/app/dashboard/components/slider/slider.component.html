@@ -1,1 +1,1 @@
-<input class="custom-input" type="range" min="0" value="0" max="100" [ngClass]="[size]" (change)="getValue($event)">
+<input class="custom-input" type="range" [min]="min" [value]="value()" [max]="max()" [ngClass]="[size]" (input)="getValue($event)">

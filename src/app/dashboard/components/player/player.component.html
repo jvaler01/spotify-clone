@@ -18,7 +18,7 @@
 
   <div class="grid place-content-center gap-4 flex-1">
     <div class="flex justify-center flex-col items-center">
-      <button class="bg-white rounded-full text-black" (click)="isPlaying = !isPlaying" [ngClass]="isPlaying ? 'p-3' : 'p-2'">
+      <button class="bg-white rounded-full text-black" (click)="togglePlayback()" [ngClass]="isPlaying ? 'p-3' : 'p-2'">
         @if (isPlaying) {
           <app-svg-icon [icon]="Icons.Pause" [size]="16"/>
         } @else {
@@ -27,23 +27,17 @@
       </button>
         <div class="flex gap-x-3 text-xs pt-2">
           <span class="opacity-50 w-12 text-right">
-            <!-- {formatTime(currentTime)} -->
-            0:00
+            {{songTimer()}}
           </span>
           <span class="w-[400px]">
-            <app-slider [size]="'w-[400px]'"/>
+            <app-slider [size]="'w-[400px]'" [min]="0" [value]="audioPlayerSlideValue" [max]="audioPlayerTimer" (emitSlideValueEvent)="getValue($event)"/>
           </span>
     
           <span class="opacity-50 w-12">
-            <!-- {duration ? formatTime(duration) : '0:00'} -->
-            0:00
+            {{songDuration}}
           </span>
         </div>
-        <audio>
-          <source src="https://www.w3schools.com/html/horse.ogg" type="audio/ogg" />
-          <source src="https://www.w3schools.com/html/horse.mp3" type="audio/mpeg" />
-          Your browser does not support the audio element.
-        </audio>
+        <audio #audio [src]="audioUrl"></audio>
     </div>
 
   </div>

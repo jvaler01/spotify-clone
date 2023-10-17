@@ -80,7 +80,7 @@ export const songs: Song[] = [
     "image": `https://vinyl.lofirecords.com/cdn/shop/products/VINYL_MORNING_COFFEE_4-min.png?v=1680526353`,
     "artists": ["LoFi Dreamer"],
     "album": "Chill Lo-Fi Music",
-    "duration": "3:12"
+    "duration": "2:57"
   },
   {
     "id": 2,

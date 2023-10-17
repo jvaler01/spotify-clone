@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -10,8 +10,13 @@ import { CommonModule } from '@angular/common';
 })
 export class SliderComponent {
   @Input() size: string = 'w-[150px]';
-  value = '0';
+  @Input() min: number=0;
+  @Input() value = signal('0');
+  @Input() max = signal(0);
+
+  @Output() emitSlideValueEvent = new EventEmitter<number>();
   getValue(event: any) {
     console.log(event.target!.value)
+    this.emitSlideValueEvent.emit(event.target!.value);
   }
 }
