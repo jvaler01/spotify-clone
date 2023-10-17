@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -9,8 +9,9 @@ import { CommonModule } from '@angular/common';
   styleUrls: ['./slider.component.scss']
 })
 export class SliderComponent {
-  precio = '12';
-  getPrecio(event: any) {
+  @Input() size: string = 'w-[150px]';
+  value = '0';
+  getValue(event: any) {
     console.log(event.target!.value)
   }
 }
