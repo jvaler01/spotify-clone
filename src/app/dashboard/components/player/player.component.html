@@ -33,24 +33,17 @@
           <span class="w-[400px]">
             <app-slider [size]="'w-[400px]'"/>
           </span>
-          <!-- <Slider
-            value={[currentTime]}
-            max={audio?.current?.duration ?? 0}
-            min={0}
-            className="w-[400px]"
-            onValueChange={(value) => {
-              const [newCurrentTime] = value
-              audio.current.currentTime = newCurrentTime
-            }}
-          /> -->
     
           <span class="opacity-50 w-12">
             <!-- {duration ? formatTime(duration) : '0:00'} -->
             0:00
           </span>
         </div>
-      <!-- <SongControl audio={audioRef} /> -->
-      <!-- <audio ref={audioRef} /> -->
+        <audio>
+          <source src="https://www.w3schools.com/html/horse.ogg" type="audio/ogg" />
+          <source src="https://www.w3schools.com/html/horse.mp3" type="audio/mpeg" />
+          Your browser does not support the audio element.
+        </audio>
     </div>
 
   </div>
@@ -65,18 +58,6 @@
         }
       </button>
       <app-slider />
-      <!-- <Slider
-        defaultValue={[100]}
-        max={100}
-        min={0}
-        value={[volume * 100]}
-        class="w-[95px]"
-        onValueChange={(value) => {
-          const [newVolume] = value
-          const volumeValue = newVolume / 100
-          setVolume(volumeValue)
-        }}
-      /> -->
     </div>
   </div>
 </div>

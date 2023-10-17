@@ -14,6 +14,7 @@ import { Icons } from '../../interfaces/index';
 export class PlayerComponent {
   isPlaying: boolean = false;
   isVolumeSilenced: boolean = false;
+  audioRef: string = '';
   get Icons() {
     return Icons; 
   }
