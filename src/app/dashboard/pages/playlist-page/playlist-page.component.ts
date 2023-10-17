@@ -1,25 +1,26 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, Input, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ActivatedRoute } from '@angular/router';
-import { Subscription } from 'rxjs';
+import { CardPlayButtonComponent } from '../../components/card-play-button/card-play-button.component';
+import { MusicTableComponent } from '../../components/music-table/music-table.component';
+import { Playlist, Song } from '../../interfaces';
+import { SpotifyService } from '../../services/spotify.service';
 
 @Component({
   selector: 'app-playlist-page',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, CardPlayButtonComponent, MusicTableComponent],
   templateUrl: './playlist-page.component.html',
   styleUrls: ['./playlist-page.component.scss']
 })
-export class PlaylistPageComponent implements OnInit, OnDestroy {
-  id: string = '0';
-  private routeSub: Subscription = new Subscription;
-  constructor(private route: ActivatedRoute) {}
-  ngOnInit(): void {
-    this.routeSub = this.route.params.subscribe((params) => {
-      this.id = params['id'];
-    })
+export class PlaylistPageComponent {
+  @Input() id: string = '';
+  private spotifyService = inject(SpotifyService);
+
+  get songs(): Song[] {
+    return this.spotifyService.getSongsById(+this.id);
   }
-  ngOnDestroy(): void {
-    this.routeSub.unsubscribe();
+  
+  get playlist(): Playlist {
+    return this.spotifyService.getPlaylistsById(this.id);
   }
 }

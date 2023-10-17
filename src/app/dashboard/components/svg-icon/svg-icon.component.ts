@@ -11,6 +11,7 @@ import { Icons } from 'src/app/dashboard/interfaces/index';
 })
 export class SvgIconComponent {
   @Input() icon: Icons = Icons.Home;
+  @Input() size: number = 24;
   get Icons() {
     return Icons; 
   }

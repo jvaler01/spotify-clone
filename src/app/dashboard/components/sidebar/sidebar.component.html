@@ -1,8 +1,8 @@
 <nav class="flex flex-col flex-1 gap-2 h-full">
   <div class="bg-zinc-900 rounded-lg p-2">
     <ul>
-      <li><a routerLink="/dashboard/home" class="flex gap-4 text-zinc-400 hover:text-zinc-100 items-center py-3 px-5 font-medium transition duration-300"><app-svg-icon [icon]="Icons.Home"/>Home</a></li>
-      <li><a routerLink="/dashboard/search" class="flex gap-4 text-zinc-400 hover:text-zinc-100 items-center py-3 px-5 font-medium transition duration-300"><app-svg-icon [icon]="Icons.Search"/>Search</a></li>
+      <li><a routerLink="/dashboard/home" class="flex gap-4 text-zinc-400 hover:text-zinc-100 items-center py-3 px-5 font-medium transition duration-300"><app-svg-icon [icon]="Icons.Home"/>Inicio</a></li>
+      <li><a routerLink="/dashboard/search" class="flex gap-4 text-zinc-400 hover:text-zinc-100 items-center py-3 px-5 font-medium transition duration-300"><app-svg-icon [icon]="Icons.Search"/>Buscar</a></li>
     </ul>
   </div>
 
@@ -15,7 +15,7 @@
           <app-side-card [playlist]="item"/>
         </li>
       } @empty {
-        <li>No data</li>
+        <li>Sin datos</li>
       }
     </ul>
   </div>
