@@ -12,7 +12,7 @@ import { SpotifyService } from '../../services/spotify.service';
   templateUrl: './playlist-page.component.html',
   styleUrls: ['./playlist-page.component.scss']
 })
-export class PlaylistPageComponent {
+export class PlaylistPageComponent{
   @Input() id: string = '';
   private spotifyService = inject(SpotifyService);
 
@@ -25,6 +25,10 @@ export class PlaylistPageComponent {
   }
   
   setSongById(id: string, byList: boolean = false) {
-    this.spotifyService.setSongById(+id, byList);
+    if (+id == this.spotifyService.currentSong()?.albumId) {
+      this.spotifyService.setSongById(0, byList);
+    }else{
+      this.spotifyService.setSongById(+id, byList);
+    }
   }
 }

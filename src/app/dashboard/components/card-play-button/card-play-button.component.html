@@ -1,6 +1,5 @@
-<button (click)="isPlaying = !isPlaying" class="card-play-button text-black rounded-full bg-green-500 hover:scale-105 transition hover:bg-green-400" [ngClass]="isPlaying ? 'p-4' : 'p-3'">
-  <!-- {isPlayingPlaylist ? <Pause className={iconClassName} /> : <Play className={iconClassName} />} -->
-  @if (isPlaying) {
+<button class="card-play-button text-black rounded-full bg-green-500 hover:scale-105 transition hover:bg-green-400" [ngClass]="currentSong()?.albumId === +playlistId ? 'p-4' : 'p-3'">
+  @if (currentSong()?.albumId === +playlistId) {
     <app-svg-icon [icon]="Icons.Pause" [size]="16"/>
   } @else {
     <app-svg-icon [icon]="Icons.Play"/>

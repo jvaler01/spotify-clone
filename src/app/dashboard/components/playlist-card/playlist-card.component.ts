@@ -1,4 +1,4 @@
-import { Component, Input, inject } from '@angular/core';
+import { Component, Input, inject  } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { Playlist } from '../../interfaces';
@@ -10,13 +10,17 @@ import { SpotifyService } from '../../services/spotify.service';
   standalone: true,
   imports: [CommonModule, RouterLink, CardPlayButtonComponent],
   templateUrl: './playlist-card.component.html',
-  styleUrls: ['./playlist-card.component.scss']
+  styleUrls: ['./playlist-card.component.scss'],
 })
 export class PlaylistCardComponent {
   @Input() playlist: Playlist = {} as Playlist;
   private spotifyService = inject(SpotifyService);
-  
+
   setSongById(id: string, byList: boolean = false) {
-    this.spotifyService.setSongById(+id, byList);
+    if (+id == this.spotifyService.currentSong()?.albumId) {
+      this.spotifyService.setSongById(0, byList);
+    }else{
+      this.spotifyService.setSongById(+id, byList);
+    }
   }
 }

@@ -20,16 +20,19 @@
         [src]="playlist.cover"
         [alt]="'Cover of' + playlist.title + ' by ' + playlist.artists.join(', ')"
         class="object-cover w-full h-full rounded-md"
+        [style]="'view-transition-name: element_'+playlist.id+';'"
       />
     </picture>
 
     <div class="flex flex-auto flex-col px-2">
-      <h4 class="text-white text-sm">
+      <h4 class="text-white text-sm"
+      [style]="'view-transition-name: title_'+playlist.id+';'">
         {{playlist.title}}
       </h4>
 
       <span
         class="text-xs text-gray-400"
+        [style]="'view-transition-name: artists'+playlist.id+';'"
       >
       {{playlist.artists.join(', ')}}
       </span>

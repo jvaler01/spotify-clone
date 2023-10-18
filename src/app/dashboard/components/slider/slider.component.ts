@@ -11,12 +11,11 @@ import { CommonModule } from '@angular/common';
 export class SliderComponent {
   @Input() size: string = 'w-[150px]';
   @Input() min: number=0;
-  @Input() value = signal('0');
-  @Input() max = signal(0);
+  @Input() value = signal('50');
+  @Input() max = signal(100);
 
   @Output() emitSlideValueEvent = new EventEmitter<number>();
   getValue(event: any) {
-    console.log(event.target!.value)
     this.emitSlideValueEvent.emit(event.target!.value);
   }
 }
