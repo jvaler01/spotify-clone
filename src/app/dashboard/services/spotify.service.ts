@@ -6,9 +6,12 @@ import { playlists, songs } from '../data/data';
   providedIn: 'root'
 })
 export class SpotifyService {
-  private _currentSong = signal<Song|null>(null);
+  // # for private properties private only in dev mode (ts) # dev, compilation, runtime
+  #currentSong = signal<Song|null>(null);
+  #currentPlaying = signal<boolean>(false);
   //! Al mundo exterior
-  public currentSong = computed( () => this._currentSong() );
+  public currentSong = computed( () => this.#currentSong() );
+  public currentPlaying = computed( () => this.#currentPlaying() );
 
   constructor() { }
 
@@ -29,10 +32,22 @@ export class SpotifyService {
   }
 
   setSongById(id: number, byList: boolean = false) {
+    const currentAlbumId = this.#currentSong()?.albumId;
     if (byList) {
-      this._currentSong.set(songs.find(song => song.albumId === id) ?? null);
+      this.#currentSong.set(songs.find(song => song.albumId === id) ?? null);
     } else {
-      this._currentSong.set(songs.find(song => song.id === id) ?? null);
+      this.#currentSong.set(songs.find(song => song.id === id) ?? null);
     }
+    if (currentAlbumId && this.#currentSong() && currentAlbumId === this.#currentSong()?.albumId) {
+      this.setCurrentPlaying();
+    }else if (this.#currentSong()) {
+      this.#currentPlaying.set(true);
+    } else {
+      this.#currentPlaying.set(false);
+    }
+  }
+
+  setCurrentPlaying() {
+    this.#currentPlaying.set(!this.#currentPlaying());
   }
 }

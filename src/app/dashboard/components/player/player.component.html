@@ -18,8 +18,8 @@
 
   <div class="grid place-content-center gap-4 flex-1">
     <div class="flex justify-center flex-col items-center">
-      <button class="bg-white rounded-full text-black" (click)="togglePlayback()" [ngClass]="isPlaying ? 'p-3' : 'p-2'">
-        @if (isPlaying) {
+      <button class="bg-white rounded-full text-black" (click)="togglePlayback()" [ngClass]="currentPlaying() ? 'p-3' : 'p-2'">
+        @if (currentPlaying()) {
           <app-svg-icon [icon]="Icons.Pause" [size]="16"/>
         } @else {
           <app-svg-icon [icon]="Icons.Play"/>

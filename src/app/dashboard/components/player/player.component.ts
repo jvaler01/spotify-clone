@@ -97,4 +97,8 @@ export class PlayerComponent{
   get currentSong() {
     return this.spotifyService.currentSong;
   }
+  
+  get currentPlaying() {
+    return this.spotifyService.currentPlaying;
+  }
 }

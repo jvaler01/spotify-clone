@@ -17,10 +17,10 @@ export class PlaylistCardComponent {
   private spotifyService = inject(SpotifyService);
 
   setSongById(id: string, byList: boolean = false) {
-    if (+id == this.spotifyService.currentSong()?.albumId) {
+    /* if (+id == this.spotifyService.currentSong()?.albumId) {
       this.spotifyService.setSongById(0, byList);
     }else{
       this.spotifyService.setSongById(+id, byList);
-    }
+    } */
   }
 }
