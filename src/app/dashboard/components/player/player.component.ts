@@ -18,17 +18,10 @@ export class PlayerComponent{
   @ViewChild('audioBar') audioBarRef: ElementRef<HTMLInputElement> | undefined;
   private spotifyService = inject(SpotifyService);
   private playerService = inject(PlayerService);
-  /* isPlaying: boolean = false;
-  isVolumeSilenced: boolean = false;
-  songTimer = signal('0:00');
-  audioPlayerTimer = signal(1);
-  audioPlayerSlideValue = signal('0');
-  songDuration = signal('0:00');
-  audioUrl = signal(''); */
 
   private songDurationEffect = effect(() => {
     if (this.spotifyService.currentSong()) {
-      /* this.isPlaying = false; */
+      this.playerService.setIsPlaying(false);
       const [minutes, seconds] = this.spotifyService.currentSong()!.duration.split(':').map(Number);
       const totalSeconds = minutes * 60 + seconds;
       this.playerService.setAudioPlayerTimer(totalSeconds);

@@ -41,15 +41,18 @@ export class SpotifyService {
       this.#currentSong.set(songs.find(song => song.id === id) ?? null);
     }
     if (currentAlbumId && this.#currentSong() && currentAlbumId === this.#currentSong()?.albumId) {
-      this.setCurrentPlaying();
+      this.playerService.setIsPlaying(!this.playerService.isPlaying());
+     //this.setCurrentPlaying();
     }else if (this.#currentSong()) {
-      this.#currentPlaying.set(true);
+      this.playerService.setIsPlaying(true);
+      //this.#currentPlaying.set(true);
     } else {
-      this.#currentPlaying.set(false);
+      this.playerService.setIsPlaying(false);
+      //this.#currentPlaying.set(false);
     }
   }
 
   setCurrentPlaying() {
-    this.#currentPlaying.set(!this.#currentPlaying());
+    //this.#currentPlaying.set(!this.#currentPlaying());
   }
 }
