@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
-import { SpotifyService } from '../../services/spotify.service';
+import { SpotifyService } from '../../services/spotify/spotify.service';
 import { SvgIconComponent } from '../svg-icon/svg-icon.component';
 import { SideCardComponent } from '../side-card/side-card.component';
 import { Icons, Playlist } from 'src/app/dashboard/interfaces/index';

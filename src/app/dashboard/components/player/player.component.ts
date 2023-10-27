@@ -1,6 +1,7 @@
 import { Component, effect, ElementRef, inject, signal, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { SpotifyService } from '../../services/spotify.service';
+import { SpotifyService } from '../../services/spotify/spotify.service';
+import { PlayerService } from '../../services/player/player.service';
 import { SvgIconComponent } from '../svg-icon/svg-icon.component';
 import { SliderComponent } from '../slider/slider.component';
 import { Icons } from '../../interfaces/index';
@@ -16,22 +17,23 @@ export class PlayerComponent{
   @ViewChild('audio') audioPlayerRef: ElementRef<HTMLAudioElement> | undefined;
   @ViewChild('audioBar') audioBarRef: ElementRef<HTMLInputElement> | undefined;
   private spotifyService = inject(SpotifyService);
-  isPlaying: boolean = false;
+  private playerService = inject(PlayerService);
+  /* isPlaying: boolean = false;
   isVolumeSilenced: boolean = false;
   songTimer = signal('0:00');
   audioPlayerTimer = signal(1);
   audioPlayerSlideValue = signal('0');
   songDuration = signal('0:00');
-  audioUrl = signal('');
+  audioUrl = signal(''); */
 
   private songDurationEffect = effect(() => {
     if (this.spotifyService.currentSong()) {
-      this.isPlaying = false;
+      /* this.isPlaying = false; */
       const [minutes, seconds] = this.spotifyService.currentSong()!.duration.split(':').map(Number);
       const totalSeconds = minutes * 60 + seconds;
-      this.audioPlayerTimer.update( current => totalSeconds );
-      this.songDuration.update( current => this.convertSecondsToMinutes(totalSeconds));
-      this.audioUrl.update( current => `/assets/music/${this.spotifyService.currentSong()!.albumId}/0${this.spotifyService.currentSong()!.id}.mp3`);
+      this.playerService.setAudioPlayerTimer(totalSeconds);
+      this.playerService.setSongDuration(totalSeconds);
+      this.playerService.setAudioUrl(this.spotifyService.currentSong()!.albumId, this.spotifyService.currentSong()!.id);
       setTimeout(() => {
         this.togglePlayback();
       }, 1000)
@@ -47,58 +49,80 @@ export class PlayerComponent{
   togglePlayback() {
     const audioPlayer = this.audioPlayerRef?.nativeElement;
     if (audioPlayer) {
-      if (this.isPlaying) {
+      if (this.playerService.isPlaying()) {
         audioPlayer!.pause();
       } else {
         audioPlayer!.play();
       }
-      this.isPlaying = !this.isPlaying;
+      this.playerService.setIsPlaying(!this.playerService.isPlaying());
     }
   }
   getValueSliderSong(value: number) {
-    const audioPlayer = this.audioPlayerRef!.nativeElement;
-    audioPlayer.currentTime = value;
+    /* const audioPlayer = this.audioPlayerRef!.nativeElement;
+    audioPlayer.currentTime = value; */
   }
   getValueSliderVolume(value: number) {
-    const audioPlayer = this.audioPlayerRef!.nativeElement;
+    /* const audioPlayer = this.audioPlayerRef!.nativeElement;
     if (value === 0) {
       this.isVolumeSilenced = true;
     } else {
       this.isVolumeSilenced = false;
       
     }
-    audioPlayer.volume = value/100;
+    audioPlayer.volume = value/100; */
   }
   setVolume(){
-    const audioPlayer = this.audioPlayerRef!.nativeElement;
-    audioPlayer.volume = this.isVolumeSilenced ? 0 : 1;
+    /* const audioPlayer = this.audioPlayerRef!.nativeElement;
+    audioPlayer.volume = this.isVolumeSilenced ? 0 : 1; */
   }
-  convertSecondsToMinutes(time: number): string {
+  /* convertSecondsToMinutes(time: number): string {
     if (time == null) return `0:00`
 
     const seconds = Math.floor(time % 60)
     const minutes = Math.floor(time / 60)
 
     return `${minutes}:${seconds.toString().padStart(2, '0')}`
-  }
+  } */
   ngAfterViewInit() {
     const audioPlayer = this.audioPlayerRef!.nativeElement;
     audioPlayer.addEventListener('timeupdate', () => {
-      this.audioPlayerSlideValue.update( current => audioPlayer.currentTime.toString());
-      this.songTimer.update( current => this.convertSecondsToMinutes(audioPlayer.currentTime));
+      this.playerService.setAudioPlayerSlideValue(audioPlayer.currentTime.toString());
+      this.playerService.setSongTimer(audioPlayer.currentTime, true);
     });
     audioPlayer.addEventListener('ended', () => {
-      this.audioPlayerSlideValue.update( current => '0');
-      this.songTimer.update( current => '0:00');
-      this.isPlaying = false;
+      this.playerService.setAudioPlayerSlideValue('0');
+      this.playerService.setSongTimer('0:00', false);
+      this.playerService.setIsPlaying(false);
     });
   }
 
+  // spotifyService getters
   get currentSong() {
     return this.spotifyService.currentSong;
   }
-  
   get currentPlaying() {
     return this.spotifyService.currentPlaying;
+  }
+  // playerService getters
+  get isPlaying() {
+    return this.playerService.isPlaying;
+  }
+  get songTimer() {
+    return this.playerService.songTimer;
+  }
+  get songDuration() {
+    return this.playerService.songDuration;
+  }
+  get isVolumeSilenced() {
+    return this.playerService.isVolumeSilenced;
+  }
+  get audioUrl() {
+    return this.playerService.audioUrl;
+  }
+  get audioPlayerTimer() {
+    return this.playerService.audioPlayerTimer;
+  }
+  get audioPlayerSlideValue() {
+    return this.playerService.audioPlayerSlideValue;
   }
 }

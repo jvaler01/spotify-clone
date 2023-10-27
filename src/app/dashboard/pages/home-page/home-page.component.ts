@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { SpotifyService } from '../../services/spotify.service';
+import { SpotifyService } from '../../services/spotify/spotify.service';
 import { Playlist } from '../../interfaces';
 import { PlaylistCardComponent } from '../../components/playlist-card/playlist-card.component';
 import { HeaderComponent } from '../../components/header/header.component';

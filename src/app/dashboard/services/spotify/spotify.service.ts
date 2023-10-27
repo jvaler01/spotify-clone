@@ -1,11 +1,13 @@
-import { Injectable, computed, signal } from '@angular/core';
+import { Injectable, computed, inject, signal } from '@angular/core';
 import { Playlist, Song } from 'src/app/dashboard/interfaces/index';
-import { playlists, songs } from '../data/data';
+import { playlists, songs } from '../../data/data';
+import { PlayerService } from '../player/player.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SpotifyService {
+  private playerService = inject(PlayerService);
   // # for private properties private only in dev mode (ts) # dev, compilation, runtime
   #currentSong = signal<Song|null>(null);
   #currentPlaying = signal<boolean>(false);

@@ -2,7 +2,7 @@ import { Component, Input, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Icons } from 'src/app/dashboard/interfaces/index';
 import { SvgIconComponent } from '../svg-icon/svg-icon.component';
-import { SpotifyService } from '../../services/spotify.service';
+import { SpotifyService } from '../../services/spotify/spotify.service';
 
 @Component({
   selector: 'app-card-play-button',

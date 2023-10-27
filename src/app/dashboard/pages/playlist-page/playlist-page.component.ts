@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { CardPlayButtonComponent } from '../../components/card-play-button/card-play-button.component';
 import { MusicTableComponent } from '../../components/music-table/music-table.component';
 import { Playlist, Song } from '../../interfaces';
-import { SpotifyService } from '../../services/spotify.service';
+import { SpotifyService } from '../../services/spotify/spotify.service';
 
 @Component({
   selector: 'app-playlist-page',
