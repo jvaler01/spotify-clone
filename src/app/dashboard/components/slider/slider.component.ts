@@ -6,7 +6,7 @@ import { CommonModule } from '@angular/common';
   standalone: true,
   imports: [CommonModule],
   templateUrl: './slider.component.html',
-  styleUrls: ['./slider.component.scss']
+  styleUrl: './slider.component.scss'
 })
 export class SliderComponent {
   @Input() size: string = 'w-[150px]';

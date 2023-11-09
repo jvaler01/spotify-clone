@@ -1,13 +1,13 @@
 import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Icons } from 'src/app/dashboard/interfaces/index';
+import { Icons } from '../../interfaces';
 
 @Component({
   selector: 'app-svg-icon',
   standalone: true,
   imports: [CommonModule],
   templateUrl: './svg-icon.component.svg',
-  styleUrls: ['./svg-icon.component.scss']
+  styleUrl: './svg-icon.component.scss'
 })
 export class SvgIconComponent {
   @Input() icon: Icons = Icons.Home;

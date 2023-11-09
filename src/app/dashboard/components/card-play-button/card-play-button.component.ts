@@ -1,16 +1,16 @@
 import { Component, Input, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Icons } from 'src/app/dashboard/interfaces/index';
-import { SvgIconComponent } from '../svg-icon/svg-icon.component';
-import { SpotifyService } from '../../services/spotify/spotify.service';
+import { Icons } from '../../interfaces';
 import { PlayerService } from '../../services/player/player.service';
+import { SpotifyService } from '../../services/spotify/spotify.service';
+import { SvgIconComponent } from '../svg-icon/svg-icon.component';
 
 @Component({
   selector: 'app-card-play-button',
   standalone: true,
   imports: [CommonModule, SvgIconComponent],
   templateUrl: './card-play-button.component.html',
-  styleUrls: ['./card-play-button.component.scss']
+  styleUrl: './card-play-button.component.scss'
 })
 export class CardPlayButtonComponent {
   private spotifyService = inject(SpotifyService);

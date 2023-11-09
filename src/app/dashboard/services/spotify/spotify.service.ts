@@ -1,5 +1,5 @@
 import { Injectable, computed, inject, signal } from '@angular/core';
-import { Playlist, Song } from 'src/app/dashboard/interfaces/index';
+import { Playlist, Song } from '../../interfaces/index';
 import { playlists, songs } from '../../data/data';
 import { PlayerService } from '../player/player.service';
 

@@ -1,17 +1,17 @@
-import { Component, effect, ElementRef, inject, signal, ViewChild } from '@angular/core';
+import { Component, ElementRef, ViewChild, effect, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { SpotifyService } from '../../services/spotify/spotify.service';
+import { Icons } from '../../interfaces';
 import { PlayerService } from '../../services/player/player.service';
-import { SvgIconComponent } from '../svg-icon/svg-icon.component';
+import { SpotifyService } from '../../services/spotify/spotify.service';
 import { SliderComponent } from '../slider/slider.component';
-import { Icons } from '../../interfaces/index';
+import { SvgIconComponent } from '../svg-icon/svg-icon.component';
 
 @Component({
   selector: 'app-player',
   standalone: true,
   imports: [CommonModule, SvgIconComponent, SliderComponent],
   templateUrl: './player.component.html',
-  styleUrls: ['./player.component.scss']
+  styleUrl: './player.component.scss'
 })
 export class PlayerComponent{
   @ViewChild('audio') audioPlayerRef: ElementRef<HTMLAudioElement> | undefined;
@@ -31,7 +31,7 @@ export class PlayerComponent{
         this.togglePlayback();
       }, 1000)
     }else{
-      this.togglePlayback();
+      //this.togglePlayback();
     }
   }, {allowSignalWrites: true});
   

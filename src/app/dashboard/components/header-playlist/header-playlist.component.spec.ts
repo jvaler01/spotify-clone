@@ -6,10 +6,12 @@ describe('HeaderPlaylistComponent', () => {
   let component: HeaderPlaylistComponent;
   let fixture: ComponentFixture<HeaderPlaylistComponent>;
 
-  beforeEach(() => {
-    TestBed.configureTestingModule({
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
       imports: [HeaderPlaylistComponent]
-    });
+    })
+    .compileComponents();
+    
     fixture = TestBed.createComponent(HeaderPlaylistComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

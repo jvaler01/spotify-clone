@@ -6,7 +6,7 @@ import { CommonModule } from '@angular/common';
   standalone: true,
   imports: [CommonModule],
   templateUrl: './music-playlist.component.html',
-  styleUrls: ['./music-playlist.component.scss']
+  styleUrl: './music-playlist.component.scss'
 })
 export class MusicPlaylistComponent {
 

@@ -6,10 +6,12 @@ describe('MusicPlaylistComponent', () => {
   let component: MusicPlaylistComponent;
   let fixture: ComponentFixture<MusicPlaylistComponent>;
 
-  beforeEach(() => {
-    TestBed.configureTestingModule({
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
       imports: [MusicPlaylistComponent]
-    });
+    })
+    .compileComponents();
+    
     fixture = TestBed.createComponent(MusicPlaylistComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

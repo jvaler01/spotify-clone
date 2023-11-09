@@ -6,7 +6,7 @@ import { CommonModule } from '@angular/common';
   standalone: true,
   imports: [CommonModule],
   templateUrl: './header-playlist.component.html',
-  styleUrls: ['./header-playlist.component.scss']
+  styleUrl: './header-playlist.component.scss'
 })
 export class HeaderPlaylistComponent {
 
